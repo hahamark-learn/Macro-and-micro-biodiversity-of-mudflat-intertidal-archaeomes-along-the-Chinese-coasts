@@ -1,0 +1,11 @@
+value	group
+10	G_Carbohydrate_transport_and_metabolism
+10	M_Cell_wall/membrane/envelope_biogenesis
+10	V_Defense_mechanisms
+13	H_Coenzyme_transport_and_metabolism
+14	F_Nucleotide_transport_and_metabolism
+17	L_Replication,recombination_and_repair
+21	E_Amino_acid_transport_and_metabolism
+28	C_Energy_production_conversion
+28	P_Inorganic_ion_transport_and_metabolism
+41	S_Function_unknown

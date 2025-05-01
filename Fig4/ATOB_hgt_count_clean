@@ -1,0 +1,16 @@
+value group
+3 C_Energy_production_conversion
+3 D_Cell_cycle_control,cell_division,_chromosome_partitioning
+14 E_Amino_acid_transport_and_metabolism
+2 G_Carbohydrate_transport_and_metabolism
+3 H_Coenzyme_transport_and_metabolism
+3 I_Lipid_transport_and_metabolism
+4 J_Translation,ribosomal_structure_and_biogenesis
+2 K_Transcription
+4 L_Replication,recombination_and_repair
+1 M_Cell_wall/membrane/envelope_biogenesis
+5 O_Posttranslational_modification,protein_turnover,chaperones
+6 P_Inorganic_ion_transport_and_metabolism
+5 S_Function_unknown
+1 U_Intracellular_trafficking,_secretion,_and_vesicular_transport
+1 V_Defense_mechanisms

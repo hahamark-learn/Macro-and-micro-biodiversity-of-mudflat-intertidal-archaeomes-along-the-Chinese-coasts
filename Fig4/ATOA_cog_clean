@@ -1,0 +1,13 @@
+value group
+3 C_Energy_production_conversion
+1 D_Cell_cycle_control,cell_division,_chromosome_partitioning
+1 E_Amino_acid_transport_and_metabolism
+2 G_Carbohydrate_transport_and_metabolism
+2 I_Lipid_transport_and_metabolism
+3 J_Translation,ribosomal_structure_and_biogenesis
+2 K_Transcription
+2 L_Replication,recombination_and_repair
+2 O_Posttranslational_modification,protein_turnover,chaperones
+2 P_Inorganic_ion_transport_and_metabolism
+1 Q_Secondary_metabolites_biosynthesis,transport_and_catabolism
+3 S_Function_unknown

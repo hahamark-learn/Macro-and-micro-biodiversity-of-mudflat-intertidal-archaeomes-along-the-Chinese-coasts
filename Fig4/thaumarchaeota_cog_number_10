@@ -1,0 +1,11 @@
+value	group
+9	O_Posttranslational_modification,protein_turnover,chaperones
+14	H_Coenzyme_transport_and_metabolism
+14	Q_Secondary_metabolites_biosynthesis,transport_and_catabolism
+15	M_Cell_wall/membrane/envelope_biogenesis
+17	J_Translation,ribosomal_structure_and_biogenesis
+19	L_Replication,recombination_and_repair
+29	C_Energy_production_conversion
+41	P_Inorganic_ion_transport_and_metabolism
+43	E_Amino_acid_transport_and_metabolism
+65	S_Function_unknown

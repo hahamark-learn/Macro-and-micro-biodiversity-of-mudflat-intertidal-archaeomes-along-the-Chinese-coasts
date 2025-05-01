@@ -1,0 +1,15 @@
+value	group
+3 C_Energy_production_conversion
+10 E_Amino_acid_transport_and_metabolism
+1 F_Nucleotide_transport_and_metabolism
+1 G_Carbohydrate_transport_and_metabolism
+2 H_Coenzyme_transport_and_metabolism
+2 I_Lipid_transport_and_metabolism
+1 K_Transcription
+1 L_Replication,recombination_and_repair
+8 M_Cell_wall/membrane/envelope_biogenesis
+4 N_Cell_motility
+4 O_Posttranslational_modification,protein_turnover,chaperones
+11 P_Inorganic_ion_transport_and_metabolism
+8 S_Function_unknown
+4 T_Signal_transduction_mechanisms
