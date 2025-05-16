@@ -14,14 +14,24 @@ library(cowplot)
 #Read in the relevant data
 #Load the relevant HGT data and carry out necessary processing
 setwd('~/Desktop/mag-hgt/')
-data1 <- read.table('donor_recipient',header = T)
-data2<- dcast(
-  data = data1,
-  donor~recipient
+data2 <- read.table("metachip_hgt",header = T)
+data3 <- gather_set_data(data2,3:5)
+#Set color list.
+color_list <- c(
+  "#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2",
+  "#7f7f7f", "#bcbd22", "#17becf", "#aec7e8", "#ffbb78", "#98df8a", "#ff9896",
+  "#c5b0d5", "#c49c94", "#f7b6d2", "#c7c7c7", "#dbdb8d", "#9edae5", "#393b79",
+  "#637939", "#8c6d31", "#843c39", "#7b4173", "#5254a3", "#6b6ecf","green","blue"
 )
-rownames(data2)<-data2$donor
-data2<- data2[-1]
-chordDiagram(data2)
+
+#Draw the pattern
+ggplot(data3, aes(x = x, id = id, split = y, value = Value)) +
+  geom_parallel_sets(aes(fill = Target), alpha = 0.6, axis.width = 0.3) +
+  geom_parallel_sets_axes(axis.width = 0.3, colour = "black",aes(fill = data3$y))+
+  geom_parallel_sets_labels(colour="black",angle = 0)+
+  scale_fill_manual(values = color_list)+
+  theme_minimal()
+
 
 #Read the relevant COG data
 data1 <- read.table('hgt_cog_number',header = T)
