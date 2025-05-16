@@ -1,34 +1,31 @@
-#kegg_contig_绘图
-#加载对应的包
+‘’‘
+Plotting information for fig1C and fig1D patterns.
+’‘’
+#kegg_contig pathway plotting
+#Load the required package
 library(tidyverse)
 library(reshape2)
 library(tibble)
 library(ggplot2)
 library(dplyr)
 library(RColorBrewer)
-#读入相关的pathway 数据
-combined_data <- read.table("/Users/hahamark/Desktop/article1/宏基因组分析/contig_taxnonmy/coverm_count/kegg/all_pathway_kegg_flatening",header = T,row.names = 1,check.names = F)
-
+#Read in the relevant pathway data
+combined_data <- read.table("all_pathway_kegg_flatening",header = T,row.names = 1,check.names = F)
+#Process the relevant pathway data
 order<-sort(rowSums(combined_data[,1:ncol(combined_data)]),index.return=TRUE,decreasing=T) 
 combined_data1<-combined_data[order$ix,]
 combined_data2 <- combined_data1[1:20,]
 combined_data3 <- rownames_to_column(combined_data2,var = "kegg_id")
 combined_data4 <- melt(combined_data3,id.vars= "kegg_id",value.name = "value",variable.name = "place")
-
-
 combined_data5 <- combined_data4 %>% 
   group_by(place) %>%
   mutate(precent = value/sum(value)*100)
-
-
+#Select 20 color codes
 my_colors <- c("#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd",
                "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf",
                "#aec7e8", "#ffbb78", "#98df8a", "#ff9896", "#c5b0d5",
                "#c49c94", "#f7b6d2", "#c7c7c7", "#dbdb8d", "#9edae5")
-
-
-
-
+#Sort the data based on location information
 combined_data5$place <- factor(combined_data5$place,levels=c("SY11_FDME210455407-1r","SY12_FDME210455408-1r","SY13_FDME210455409-2a",
                                                              "SY15_FDME210455411-2a","SY1_FDME210455397-2a","SY3_FDME210455399-2a",
                                                              "SY7_FDME210455403-2a","SY9_FDME210455405-2a","BH10_FDSW220017130-1r",
@@ -59,6 +56,7 @@ combined_data5$place <- factor(combined_data5$place,levels=c("SY11_FDME210455407
                                                              "DD11_FDSW220008398-1r","DD13_FDSW220008400-2r","DD15_FDSW220008402-2r","DD1_FDSW220008388-1r",
                                                              "DD3_FDSW220008390-2r","DD5_FDSW220008392-2r","DD7_FDSW220008394-1r","DD9_FDSW220008396-1r"
 ))
+#Draw the pattern
 p1 <-ggplot(combined_data5,aes(x=place,y=precent,fill=kegg_id))+
   geom_bar(stat = "identity",position = "stack",width = 1)+
   scale_fill_manual(values = my_colors)+
@@ -68,25 +66,26 @@ p1 <-ggplot(combined_data5,aes(x=place,y=precent,fill=kegg_id))+
         panel.background = element_blank(),
         axis.line = element_line(colour = "black"))
 
-
+#Display the pattern
 p1
-
+#Save the PDF file
 ggsave("kegg_contig_count_flatening.pdf", p1 ,width = 8.27, height = 11.69)
 
 
-#7510ko  统计
-data1 <- read.table("/Users/hahamark/Desktop/article1/宏基因组分析/contig_taxnonmy/coverm_count/kegg/all_contig_kegg_raw_flattening.txt",header = T,row.names = 1,check.names = F)
+#Plot the KEGG functions of all pathways in the tidal flat area (8021 KO)
+#Process the relevant ko data
+data1 <- read.table("all_contig_kegg_raw_flattening.txt",header = T,row.names = 1,check.names = F)
 order<-sort(rowSums(data1[,1:ncol(data1)]),index.return=TRUE,decreasing=T) 
 combined_data1<-data1[order$ix,]
 data2 <- rownames_to_column(combined_data1,var = "kegg_id")
 data3 <- melt(data2,id.vars= "kegg_id",value.name = "value",variable.name = "place")
-
-colors <- brewer.pal(12,"Set3")
-colors1 <- colorRampPalette(colors)(8012)
 data4 <- data3 %>% 
   group_by(place) %>%
   mutate(precent = value/sum(value)*100)
-
+#Select 8012 color codes
+colors <- brewer.pal(12,"Set3")
+colors1 <- colorRampPalette(colors)(8012)
+#Sort the data based on location information
 data4$place <- factor(data4$place,levels=c("SY11_FDME210455407-1r","SY12_FDME210455408-1r","SY13_FDME210455409-2a",
                                            "SY15_FDME210455411-2a","SY1_FDME210455397-2a","SY3_FDME210455399-2a",
                                            "SY7_FDME210455403-2a","SY9_FDME210455405-2a","BH10_FDSW220017130-1r",
@@ -117,7 +116,7 @@ data4$place <- factor(data4$place,levels=c("SY11_FDME210455407-1r","SY12_FDME210
                                            "DD11_FDSW220008398-1r","DD13_FDSW220008400-2r","DD15_FDSW220008402-2r","DD1_FDSW220008388-1r",
                                            "DD3_FDSW220008390-2r","DD5_FDSW220008392-2r","DD7_FDSW220008394-1r","DD9_FDSW220008396-1r"
 ))
-
+#Draw the pattern
 p2 <- ggplot(data4,aes(x=place,y=precent,fill=kegg_id))+
   geom_bar(stat = "identity",position = "stack",width = 1)+
   theme(axis.text.x = element_text(angle = 90, hjust = 1))+
@@ -126,6 +125,7 @@ p2 <- ggplot(data4,aes(x=place,y=precent,fill=kegg_id))+
         panel.background = element_blank(),
         axis.line = element_line(colour = "black"),legend.position = "none")+
   scale_fill_manual(values = colors1)
+#Display the pattern
 p2
-
-ggsave("/Users/hahamark/Desktop/article1/宏基因组分析/contig_taxnonmy/coverm_count/kegg/kegg_contig_ko_flatening_25.5.9.pdf",p2,width = 8.27, height = 11.69)
+#Save the PDF file
+ggsave("kegg_contig_ko_flatening_25.5.9.pdf",p2,width = 8.27, height = 11.69)
