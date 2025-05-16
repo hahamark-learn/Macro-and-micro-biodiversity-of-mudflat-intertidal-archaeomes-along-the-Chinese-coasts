@@ -1,5 +1,5 @@
-#kegg_contig_绘图
-#加载对应的包
+#Based on information obtained from contigs, the functional profile of overall tidal flat archaea at the continental scale was plotted
+#Load the required R packages
 library(tidyverse)
 library(reshape2)
 library(tibble)
