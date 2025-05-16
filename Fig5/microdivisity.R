@@ -4,20 +4,21 @@ library(vegan)
 library(ggpubr)
 library(ggpmisc)
 #微观多样性
-setwd("~/Desktop/article1/宏基因组分析/基于contig微观多样性/10.Microdiversity/")
-data1 <- read.table('metapop-pi-average.txt',header = T,sep = "\t")
+setwd("~/Desktop/article1/宏基因组分析/基于kraken_contig微观多样性/10.Microdiversity/")
+data1 <- read.table('metapop-pi-average-1.txt',header = T,sep = "\t")
 data1$group <-factor(data1$group,levels=c("Sanya", "Beihai" ,"Zhuhai","Shantou","Xiamen","Wenzhou","Ningbo","Yancheng","Lianyungang",
                                           "Qingdao","Dongying","Dandong"))
 color1 <- brewer.pal(12,"Set3")
 
 #箱线图
-ggplot(data1,aes(group,value,fill=group))+
+p2 <- ggplot(data1,aes(group,value,fill=group))+
   geom_boxplot()+
   scale_fill_manual(values = color1)+
   ggprism::theme_prism()+
-  theme(axis.text.x = element_text(angle = 45))+ylab("value of π")+
+  theme(axis.text.x = element_text(angle = 45))+ylab("Nucleotide diversity")+
   xlab("Location")
 
+ggsave("micro_2025.5.9.pdf",p2,width = 8,height = 6)
 
 #ldg
 
@@ -37,7 +38,29 @@ data2<- read.table("read_richness",header = T,row.names = 1)
 data2$ID <-row.names(data2)
 
 data3 <- merge(data1,data2,by="ID")
-ggplot(data3,aes(x=Richness11,y=value))+
+p1<-ggplot(data3,aes(x=Richness11,y=value))+
+  geom_point()+
+  geom_smooth(method = "lm",formula =y ~ poly(x),color="black")+
+  ggprism::theme_prism()+
+  ylab("Nucleotide diversity")+
+  xlab("Community richness")+
+  stat_poly_eq(
+    aes(label = paste(..eq.label.., ..rr.label.., ..p.value.label.., sep = "~~~")),
+    formula = y ~ x, 
+    parse = T
+  )
+p1
+ggsave("relationship_macro_micro_2025.5.9.pdf",p1,width = 8,height = 6)
+
+
+#读入16s数据
+
+
+data4 <- read.table("16-richness",header = T,row.names = 1)
+
+data3 <- merge(data1,data4,by.x = "ID",by.y="row.names")
+
+ggplot(data3,aes(x=richness,y=value))+
   geom_point()+
   geom_smooth(method = "lm",formula =y ~ poly(x),color="black")+
   ggprism::theme_prism()+
