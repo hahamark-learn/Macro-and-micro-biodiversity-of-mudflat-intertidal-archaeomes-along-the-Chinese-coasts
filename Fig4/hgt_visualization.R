@@ -33,9 +33,9 @@ data3 <- read.table('euryarchaeota_cog_number_10',header = T)
 #Nitrososphaerota
 data4 <- read.table('Nitrososphaerota_raw_number_10',header = T)
 #metachip_archaea_bacteria
-data5 <- read.table("hgt_count_clean",sep = " ",header = T)
+data5 <- read.table("ATOB_hgt_count_clean",sep = " ",header = T)
 #metachip_archaea_to_archaea
-data6 <- read.table("cog_clean",sep = " ",header = T)
+data6 <- read.table("ATOA_cog_clean",sep = " ",header = T)
 #Merge all data
 data2$phylum <- "Thaumarchaeota"
 data3$phylum <- "Euryarchaeota"
