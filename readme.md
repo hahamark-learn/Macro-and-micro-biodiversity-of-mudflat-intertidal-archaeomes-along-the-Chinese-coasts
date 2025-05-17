@@ -1,7 +1,7 @@
 # Macro- and micro-diversity of mudflat intertidal archaeomes along the Chinese coasts
 
 ## Code availability
-The R code for generating figures and performing data analysis can be found in the corresponding directory (Fig.1 to Fig.5).
+The R code for generating figures and performing data analysis can be found in the corresponding directory (Fig.1 to Fig.6).
 
 The raw data for generating the figures and performing data analysis with the R code can be found in the corresponding subfolder.
 
