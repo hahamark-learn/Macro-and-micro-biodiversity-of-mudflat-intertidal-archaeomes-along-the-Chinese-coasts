@@ -1,4 +1,3 @@
-# Macro- and micro-diversity of mudflat intertidal archaeomes along the Chinese coasts
 
 ## Code availability
 The R code for generating figures and performing data analysis can be found in the corresponding directory (Fig.1 to Fig.6).
